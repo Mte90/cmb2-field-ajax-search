@@ -20,7 +20,7 @@
 					query_args	: query_args, 	// Query args passed to field
 				},
 				transformResult: function( results ) {
-					var suggestions = $.parseJSON( results );
+					var suggestions = JSON.parse( results );
 
 					if( $('#' + field_id + '_results li').length ) {
 						var selected_vals 	= [];
