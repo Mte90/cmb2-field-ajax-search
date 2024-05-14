@@ -235,6 +235,7 @@ if( ! class_exists( 'CMB2_Field_Ajax_Search' ) ) {
                 switch( $_POST['object_type'] ) {
                     case 'post':
                         $query_args['s'] = $_POST['query'];
+			remove_all_filters('pre_get_posts');
                         $query = new WP_Query( $query_args );
                         $results = $query->posts;
                         break;
@@ -274,6 +275,7 @@ if( ! class_exists( 'CMB2_Field_Ajax_Search' ) ) {
 
 			if( $object_type == 'post' ) {
 				$text = get_the_title( $object_id );
+				$text = str_replace('&#8211;', '-', $text);
 			} else if( $object_type == 'user' ) {
 				$text = get_the_author_meta('display_name', $object_id);
 			} else if( $object_type == 'term' ) {
